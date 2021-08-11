@@ -44,7 +44,6 @@ class Board extends Component {
     const { lists: prevList } = prevProps;
     if (lists.length !== prevList.length) {
       const listComponent = document.querySelector(".lists");
-      console.log(listComponent, listComponent.scrollWidth, listComponent.clientWidth);
       if (listComponent) {
         // listComponent.scrollLeft = listComponent.scrollWidth;
         listComponent.scrollTo({ left: listComponent.scrollWidth, behavior: "smooth" });
@@ -147,10 +146,6 @@ class Board extends Component {
 
   render = () => {
     const { lists, boardTitle, boardId, boardColor } = this.props;
-    const el = document.querySelector(".lists");
-    if (el) {
-      console.log(el.scrollWidth, el.clientWidth)
-    }
     return (
       <>
         <div className={classnames("board", boardColor)}>
