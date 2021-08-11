@@ -1,0 +1,28 @@
+.tasks-table {
+    margin-left: 20px;
+    color: white;
+    font-size: large;
+    text-align: center;
+  .tasks-body {
+    .tasks-row {
+      td {
+        color: black;
+        background-color: white;
+      }
+    }
+  }
+    .tasks-row {
+      display: flex;
+    }
+    .tasks-row > * {
+      margin: 0 2px 1px 1px;
+      width: 100%;
+      word-break: break-all;
+    }
+    .tasks-header {
+      td {
+        background-color: #38D2D2;
+      }
+    }
+
+  }

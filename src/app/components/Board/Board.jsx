@@ -8,6 +8,7 @@ import List from "../List/List";
 import ListAdder from "../ListAdder/ListAdder";
 import Header from "../Header/Header";
 import BoardHeader from "../BoardHeader/BoardHeader";
+import TasksDetails from "./TaskDetails";
 import "./Board.scss";
 
 class Board extends Component {
@@ -37,6 +38,19 @@ class Board extends Component {
       payload: { boardId }
     });
   };
+
+  componentDidUpdate(prevProps) {
+    const { lists } = this.props;
+    const { lists: prevList } = prevProps;
+    if (lists.length !== prevList.length) {
+      const listComponent = document.querySelector(".lists");
+      console.log(listComponent, listComponent.scrollWidth, listComponent.clientWidth);
+      if (listComponent) {
+        // listComponent.scrollLeft = listComponent.scrollWidth;
+        listComponent.scrollTo({ left: listComponent.scrollWidth, behavior: "smooth" });
+      }
+    }
+  }
 
   handleDragEnd = ({ source, destination, type }) => {
     // dropped outside the list
@@ -133,6 +147,10 @@ class Board extends Component {
 
   render = () => {
     const { lists, boardTitle, boardId, boardColor } = this.props;
+    const el = document.querySelector(".lists");
+    if (el) {
+      console.log(el.scrollWidth, el.clientWidth)
+    }
     return (
       <>
         <div className={classnames("board", boardColor)}>
@@ -168,8 +186,10 @@ class Board extends Component {
                 )}
               </Droppable>
             </DragDropContext>
+            <TasksDetails/>
           </div>
           <div className="board-underlay" />
+
         </div>
       </>
     );

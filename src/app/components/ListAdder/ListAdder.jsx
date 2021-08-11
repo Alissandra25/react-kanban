@@ -34,12 +34,14 @@ class ListAdder extends Component {
   };
   handleSubmit = () => {
     const { dispatch, boardId } = this.props;
+    const listID = shortid.generate();
     const { listTitle } = this.state;
-    const listId = shortid.generate();
-    if (listTitle === "") return;
+    if (!listTitle) {
+      return;
+    }
     dispatch({
       type: "ADD_LIST",
-      payload: { listTitle, listId, boardId }
+      payload: { listId: listID, boardId, listTitle }
     });
     this.setState({ isOpen: false, listTitle: "" });
   };
@@ -56,7 +58,7 @@ class ListAdder extends Component {
       );
     }
     return (
-      <div className="list">
+      <div className="list list-textarea">
         <Textarea
           autoFocus
           useCacheForDOMMeasurements
